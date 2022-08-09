@@ -2,6 +2,7 @@
 
 """The setup script."""
 
+from os import path
 from setuptools import setup, find_packages
 
 with open('README.rst') as readme_file:
@@ -10,7 +11,23 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = [ ]
+here = path.abspath(path.dirname(__file__))
+
+# get the dependencies and installs
+
+with open(
+    path.join(here, "requirements.txt"), encoding="utf-8"
+) as f:
+    all_reqs = f.read().split("\n")
+
+install_requires = [
+    x.strip() for x in all_reqs if "git+" not in x
+]
+dependency_links = [
+    x.strip().replace("git+", "")
+    for x in all_reqs
+    if x.startswith("git+")
+]
 
 test_requirements = [ ]
 
@@ -29,7 +46,8 @@ setup(
         'Programming Language :: Python :: 3.8',
     ],
     description="Boosted Configuration Networks",
-    install_requires=requirements,
+    install_requires=install_requires,
+    dependency_links=dependency_links, 
     license="BSD license",
     long_description=readme + '\n\n' + history,
     include_package_data=True,
@@ -38,7 +56,7 @@ setup(
     packages=find_packages(include=['BCN', 'BCN.*']),
     test_suite='tests',
     tests_require=test_requirements,
-    url='https://github.com/thierrymoudiki/BCN',
+    url='https://github.com/Techtonique/bcn_python',
     version='0.2.1',
     zip_safe=False,
 )

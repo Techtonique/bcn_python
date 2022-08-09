@@ -75,7 +75,7 @@ class BCNRegressor(BaseEstimator, RegressorMixin):
     self.obj = None
 
   def fit(self, X, y, **kwargs):        
-    X_r = base.matrix(X, byrow=False, nrow=X.shape[0], ncol=X.shape[1])
+    X_r = base.matrix(X, nrow=X.shape[0], ncol=X.shape[1])
     y_r = FloatVector(y) 
     self.obj = bcn.bcn(x = X_r, y = y_r, 
                        B = self.B, 
@@ -96,5 +96,5 @@ class BCNRegressor(BaseEstimator, RegressorMixin):
 
   def predict(self, X, **kwargs):
     assert self.obj is not None, "you must call `fit` before trying to predict"
-    X_r = base.matrix(X, byrow=False, nrow=X.shape[0], ncol=X.shape[1])
+    X_r = base.matrix(X, nrow=X.shape[0], ncol=X.shape[1])
     return bcn.predict_bcn(self.obj, X_r)

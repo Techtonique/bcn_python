@@ -1,5 +1,5 @@
 ===
-BCN (Boosted Configuration Networks)
+BCN
 ===
 
 
@@ -10,7 +10,7 @@ BCN (Boosted Configuration Networks)
         :target: https://github.com/Techtonique/bcn_python/blob/main/LICENSE
 
 
-This package contains an implementation of Boosted Configuration (*neural*) Networks 
+This package contains an implementation of **Boosted Configuration (*neural*) Networks** 
 (BCNs). How do BCNs work? By creating ensembles (boosting in a supervised way) of single-layered 
 feedforward (*neural*) Networks.
 
@@ -70,8 +70,8 @@ relatively easy to grasp.
 
 * BCN for Regression
 
-BCN for Regression works exactly the same way as BCN for Classification. You just need to 
-use a **continuous response** ``y`` as input (no integers in the response).
+        BCN for Regression works exactly the same way as BCN for Classification. You just need to 
+        use a **continuous response** ``y`` as input (no integers in the response).
 
 Credits
 -------

@@ -35,40 +35,38 @@ will be straightforward (you can use ``fit``, ``predict``, ``cross_val_score``,
 relatively easy to grasp.
 
 
-* BCN for Classification
+* BCN for Classification::
 
-``
-import BCN as bcn # takes a long time to run, ONLY the first time it's run
-import numpy as np
-from sklearn.datasets import load_breast_cancer
-from sklearn.model_selection import train_test_split
-from sklearn import metrics
+        import BCN as bcn # takes a long time to run, ONLY the first time it's run
+        import numpy as np
+        from sklearn.datasets import load_breast_cancer
+        from sklearn.model_selection import train_test_split
+        from sklearn import metrics
 
 
-dataset = load_breast_cancer()
-X = dataset.data
-y = dataset.target
+        dataset = load_breast_cancer()
+        X = dataset.data
+        y = dataset.target
 
-# split data into training test and test set
-X_train, X_test, y_train, y_test = train_test_split(X, y, 
-                                                    test_size=0.2, random_state=123)
+        # split data into training test and test set
+        X_train, X_test, y_train, y_test = train_test_split(X, y, 
+                                                        test_size=0.2, random_state=123)
 
-clf = bcn.BCNClassifier(**{'B': 237,
- 'activation': 'sigmoid',
- 'col_sample': 0.9628819950928769,
- 'lam': 0.6163764764960539,
- 'nu': 0.6683372199442862,
- 'r': 0.9199609524470921,
- 'tol': 4.8550370180201114e-06})
+        clf = bcn.BCNClassifier(**{'B': 237,
+        'activation': 'sigmoid',
+        'col_sample': 0.9628819950928769,
+        'lam': 0.6163764764960539,
+        'nu': 0.6683372199442862,
+        'r': 0.9199609524470921,
+        'tol': 4.8550370180201114e-06})
 
-clf.fit(X_train, y_train)
+        clf.fit(X_train, y_train)
 
-preds = clf.predict(X_test)
+        preds = clf.predict(X_test)
 
-print(np.mean(y_test == preds))
+        print(np.mean(y_test == preds))
 
-print(metrics.classification_report(preds, y_test))
-``
+        print(metrics.classification_report(preds, y_test))
 
 * BCN for Regression
 

@@ -10,6 +10,7 @@ BCN
         :target: https://github.com/Techtonique/bcn_python/blob/main/LICENSE
 
 
+
 This package contains an implementation of **Boosted Configuration (*neural*) Networks** 
 (BCNs). How do BCNs work? By creating ensembles (boosting in a supervised way) of single-layered 
 feedforward (*neural*) Networks.

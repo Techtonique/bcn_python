@@ -9,6 +9,8 @@ BCN
 .. image:: https://img.shields.io/pypi/l/BCN
         :target: https://github.com/Techtonique/bcn_python/blob/main/LICENSE
 
+.. image:: https://pepy.tech/badge/BCN
+        :target: https://pepy.tech/project/BCN
 
 
 This package contains an implementation of **Boosted Configuration (*neural*) Networks** 

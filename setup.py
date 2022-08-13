@@ -49,7 +49,7 @@ setup(
     install_requires=install_requires,
     dependency_links=dependency_links, 
     license="BSD license",
-    long_description=readme + '\n\n' + history,
+    long_description="Boosted Configuration (neural) Networks for supervised learning", #readme + '\n\n' + history,
     include_package_data=True,
     keywords='BCN',
     name='BCN',

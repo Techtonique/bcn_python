@@ -40,7 +40,7 @@ relatively easy to grasp.
 
 * BCN for Classification::
 
-        import BCN as bcn # takes a long time to run, ONLY the first time it's run
+        import BCN as bcn # this line takes a long time to run, ONLY the first time it's run
         import numpy as np
         from sklearn.datasets import load_breast_cancer
         from sklearn.model_selection import train_test_split

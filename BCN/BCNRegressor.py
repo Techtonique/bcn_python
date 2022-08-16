@@ -54,9 +54,8 @@ class BCNRegressor(BaseEstimator, RegressorMixin):
                 tol = 1e-10,
                 type_optim = "nlminb",
                 activation = "sigmoid",
-                method = "greedy",
                 hidden_layer_bias = True,
-                verbose = False,
+                verbose = 0,
                 show_progress = True,
                 seed = 123):
     self.B = B
@@ -67,7 +66,6 @@ class BCNRegressor(BaseEstimator, RegressorMixin):
     self.tol = tol
     self.type_optim = type_optim
     self.activation = activation 
-    self.method = method 
     self.hidden_layer_bias = hidden_layer_bias
     self.verbose = verbose
     self.show_progress = show_progress
@@ -86,7 +84,6 @@ class BCNRegressor(BaseEstimator, RegressorMixin):
                        tol = self.tol,
                        type_optim = self.type_optim,
                        activation = self.activation,
-                       method = self.method, 
                        hidden_layer_bias = self.hidden_layer_bias,
                        verbose = self.verbose,
                        show_progress = self.show_progress,

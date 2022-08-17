@@ -45,6 +45,35 @@ stats = importr("stats")
 utils = importr("utils")
 
 class BCNRegressor(BaseEstimator, RegressorMixin):
+  """BCN (Boosted Configuration Networks) regression model
+
+  Parameters:
+
+      B:  int
+          Number of iterations of the algorithm.  
+      nu: float
+          Learning rate.
+      col_sample: float
+          Percentage of columns (covariates) adjusted at each iteration of the algorithm.
+      lam: float
+          Defines lower and upper bounds neural networks weights.
+      r: float
+          A constant usually > 0.9
+      tol: float
+          Convergence tolerance for an early stopping
+      type_optim: string
+          Type of optimization procedure used for finding neural networks weights at each iteration ("nlminb", "nmkb", "hjkb", "bobyqa", "randomsearch")
+      activation: string
+          Activation function (must be bounded). Currently: "sigmoid", "tanh".
+      hidden_layer_bias: boolean
+          If there is a bias parameter in neural networks weights. If yes, True (default). 
+      verbose: int
+          Controls verbosity (for checks). The higher, the more verbose.
+      show_progress: boolean
+          If True, a progress bar is displayed.
+      seed: int
+          For reproducibility of results.
+  """             
   
   def __init__(self, B = 10,
                 nu = 0.4,
@@ -54,9 +83,8 @@ class BCNRegressor(BaseEstimator, RegressorMixin):
                 tol = 1e-10,
                 type_optim = "nlminb",
                 activation = "sigmoid",
-                method = "greedy",
                 hidden_layer_bias = True,
-                verbose = False,
+                verbose = 0,
                 show_progress = True,
                 seed = 123):
     self.B = B
@@ -67,14 +95,24 @@ class BCNRegressor(BaseEstimator, RegressorMixin):
     self.tol = tol
     self.type_optim = type_optim
     self.activation = activation 
-    self.method = method 
     self.hidden_layer_bias = hidden_layer_bias
     self.verbose = verbose
     self.show_progress = show_progress
     self.seed = seed
     self.obj = None
 
-  def fit(self, X, y, **kwargs):        
+  def fit(self, X, y, **kwargs): 
+    """Fit BCN (Boosted Configuration Networks) regression model
+
+    Parameters:
+
+        X: {ndarray} of shape (n_samples, n_features)
+            Training data.
+
+        y: ndarray of shape (n_samples,) 
+            Target values.
+
+    """           
     X_r = base.matrix(X, nrow=X.shape[0], ncol=X.shape[1])
     y_r = FloatVector(y) 
     self.obj = bcn.bcn(x = X_r, y = y_r, 
@@ -86,7 +124,6 @@ class BCNRegressor(BaseEstimator, RegressorMixin):
                        tol = self.tol,
                        type_optim = self.type_optim,
                        activation = self.activation,
-                       method = self.method, 
                        hidden_layer_bias = self.hidden_layer_bias,
                        verbose = self.verbose,
                        show_progress = self.show_progress,
@@ -95,6 +132,13 @@ class BCNRegressor(BaseEstimator, RegressorMixin):
     return self
 
   def predict(self, X, **kwargs):
+    """Predict using BCN (Boosted Configuration Networks) regression model
+
+    Parameters:
+
+        X: array-like, shape (n_samples, n_features)
+            Test data.
+    """           
     assert self.obj is not None, "you must call `fit` before trying to predict"
     X_r = base.matrix(X, nrow=X.shape[0], ncol=X.shape[1])
     return bcn.predict_bcn(self.obj, X_r)

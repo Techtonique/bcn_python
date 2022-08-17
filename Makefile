@@ -66,16 +66,14 @@ coverage: ## check code coverage quickly with the default Python
 	coverage html
 	$(BROWSER) htmlcov/index.html
 
-docs: ## generate Sphinx HTML documentation, including API docs
-	rm -f docs/BCN.rst
-	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ BCN
-	$(MAKE) -C docs clean
-	$(MAKE) -C docs html
-	$(BROWSER) docs/_build/html/index.html
+docs: ## generate mkdocs
+	 rm -rf docs/sources
+	 make install	 
+	 python3 docs/autogen.py	 
 
 servedocs: docs ## compile the docs watching for changes
-	watchmedo shell-command -p '*.rst' -c '$(MAKE) -C docs html' -R -D .
+	cd docs&&mkdocs serve
+	cd ..
 
 release: dist ## package and upload a release
 	twine upload dist/*
@@ -87,3 +85,8 @@ dist: clean ## builds source and wheel package
 
 install: clean ## install the package to the active Python's site-packages
 	python setup.py install
+
+build-site: docs ## export mkdocs website to a folder
+	cd docs&&mkdocs build
+	cp -rf docs/site/* ../../Pro_Website/Techtonique.github.io/bcn_python
+	cd ..

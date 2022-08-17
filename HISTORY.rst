@@ -2,6 +2,13 @@
 History
 =======
 
+0.4.0 (2022-08-16)
+------------------
+
+* Remove 'direct' method for now
+* Improve `verbose` (now an integer in (0, 1, 2, 3))
+
+
 0.3.1 (2022-08-13)
 ------------------
 

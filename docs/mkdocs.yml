@@ -1,0 +1,20 @@
+site_name: Techtonique/BCN
+theme:
+  name: darkly # sandstone # slate # lux # darkly
+  nav_style: dark 
+
+docs_dir: sources
+repo_url: https://github.com/Techtonique/bcn_python
+edit_uri: ""
+site_description: 'Documentation for BCN (Boosted Configuration Networks).'
+
+nav:
+    - Quickstart examples:
+      - Classification: examples/classification.md
+      - Regression: examples/regression.md
+    - Documentation:
+      - Classifier: documentation/classifier.md
+      - Regressor: documentation/regressor.md      
+    - Techtonique: ../
+      
+        

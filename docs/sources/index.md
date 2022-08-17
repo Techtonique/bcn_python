@@ -6,7 +6,7 @@
 
 Welcome to __BCN__'s website.
 
-This package contains an implementation of **Boosted Configuration (*neural*) Networks** (BCNs). How do BCNs work? By creating ensembles (boosting in a supervised way) of single-layered feedforward (*neural*) Networks.
+This package contains an implementation of **Boosted Configuration (*neural*) Networks** (BCNs). How do BCNs work? By creating ensembles (boosting in a supervised way) of single-layered feedforward (*neural*) Networks. If you're familiar with scikit-learn, then using BCN will be straightforward (you can use `fit`, `predict`, `cross_val_score`, `GridSearchCV`, etc.).
 
 It's worth mentioning that the Python package is built on top of the [`R package`](https://techtonique.r-universe.dev/ui#package:bcn), thanks to `rpy2`.
 

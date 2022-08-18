@@ -1,6 +1,6 @@
 # Regressor
 
-<span style="float:right;">[[source]](https://github.com/Techtonique/bcn_python/BCN/BCNRegressor.py#L47)</span>
+<span style="float:right;">[[source]](https://github.com/Techtonique/bcn_python/blob/main/BCN/BCNRegressor.py#L47)</span>
 
 ### BCNRegressor
 
@@ -55,7 +55,7 @@ Parameters:
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/Techtonique/bcn_python/BCN/BCNRegressor.py#L104)</span>
+<span style="float:right;">[[source]](https://github.com/Techtonique/bcn_python/blob/main/BCN/BCNRegressor.py#L104)</span>
 
 ### fit
 
@@ -78,7 +78,7 @@ Parameters:
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/Techtonique/bcn_python/BCN/BCNRegressor.py#L134)</span>
+<span style="float:right;">[[source]](https://github.com/Techtonique/bcn_python/blob/main/BCN/BCNRegressor.py#L134)</span>
 
 ### predict
 

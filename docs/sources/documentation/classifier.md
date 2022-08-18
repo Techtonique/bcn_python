@@ -1,6 +1,6 @@
 # Classifier
 
-<span style="float:right;">[[source]](https://github.com/Techtonique/bcn_python/BCN/BCNClassifier.py#L47)</span>
+<span style="float:right;">[[source]](https://github.com/Techtonique/bcn_python/blob/main/BCN/BCNClassifier.py#L47)</span>
 
 ### BCNClassifier
 
@@ -55,7 +55,7 @@ Parameters:
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/Techtonique/bcn_python/BCN/BCNClassifier.py#L103)</span>
+<span style="float:right;">[[source]](https://github.com/Techtonique/bcn_python/blob/main/BCN/BCNClassifier.py#L103)</span>
 
 ### fit
 
@@ -78,7 +78,7 @@ Parameters:
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/Techtonique/bcn_python/BCN/BCNClassifier.py#L145)</span>
+<span style="float:right;">[[source]](https://github.com/Techtonique/bcn_python/blob/main/BCN/BCNClassifier.py#L145)</span>
 
 ### predict
 
@@ -98,7 +98,7 @@ Parameters:
 
 ----
 
-<span style="float:right;">[[source]](https://github.com/Techtonique/bcn_python/BCN/BCNClassifier.py#L133)</span>
+<span style="float:right;">[[source]](https://github.com/Techtonique/bcn_python/blob/main/BCN/BCNClassifier.py#L133)</span>
 
 ### predict_proba
 

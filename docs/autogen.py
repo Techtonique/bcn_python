@@ -24,7 +24,7 @@ def generate(dest_dir):
 
     doc_generator = keras_autodoc.DocumentationGenerator(
         PAGES,
-        'https://github.com/Techtonique/bcn_python',
+        'https://github.com/Techtonique/bcn_python/blob/main',
         template_dir,
     )
     doc_generator.generate(dest_dir)

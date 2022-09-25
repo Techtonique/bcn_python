@@ -80,7 +80,7 @@ class BCNRegressor(BaseEstimator, RegressorMixin):
                 col_sample = 1,
                 lam = 1e-1,
                 r = 0.9,
-                tol = 1e-10,
+                tol = 0,
                 type_optim = "nlminb",
                 activation = "sigmoid",
                 hidden_layer_bias = True,

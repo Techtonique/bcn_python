@@ -12,7 +12,7 @@ BCN.BCNRegressor.BCNRegressor(
     col_sample=1,
     lam=0.1,
     r=0.9,
-    tol=1e-10,
+    tol=0,
     type_optim="nlminb",
     activation="sigmoid",
     hidden_layer_bias=True,
@@ -36,7 +36,7 @@ Parameters:
     lam: float
         Defines lower and upper bounds neural networks weights.
     r: float
-        A constant usually > 0.9
+        With 0 < r < 1. Controls the convergence rate of residuals.
     tol: float
         Convergence tolerance for an early stopping
     type_optim: string

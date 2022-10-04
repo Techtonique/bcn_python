@@ -58,7 +58,7 @@ class BCNRegressor(BaseEstimator, RegressorMixin):
       lam: float
           Defines lower and upper bounds neural networks weights.
       r: float
-          A constant usually > 0.9
+          With 0 < r < 1. Controls the convergence rate of residuals.
       tol: float
           Convergence tolerance for an early stopping
       type_optim: string

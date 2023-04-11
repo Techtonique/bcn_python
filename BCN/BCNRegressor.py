@@ -5,12 +5,12 @@ import rpy2.robjects.packages as rpackages
 from rpy2.robjects.packages import importr
 from rpy2.robjects import FloatVector
 from rpy2.robjects.vectors import StrVector
-from rpy2.robjects import numpy2ri, r 
+from rpy2.robjects import numpy2ri, default_converter, r 
+from rpy2.robjects.conversion import localconverter
 
 from sklearn.base import BaseEstimator
 from sklearn.base import RegressorMixin
 
-numpy2ri.activate()
 
 r['options'](warn=-1)
 
@@ -113,9 +113,18 @@ class BCNRegressor(BaseEstimator, RegressorMixin):
             Target values.
 
     """           
-    X_r = base.matrix(X, nrow=X.shape[0], ncol=X.shape[1])
-    y_r = FloatVector(y) 
-    self.obj = bcn.bcn(x = X_r, y = y_r, 
+
+    # cf. https://rpy2.github.io/doc/latest/html/numpy.html
+    # Create a converter that starts with rpy2's default converter
+    # to which the numpy conversion rules are added.
+    np_cv_rules = localconverter(default_converter + numpy2ri.converter)    
+
+    with np_cv_rules:
+        # Anything here and until the `with` block is exited
+        # will use our numpy converter whenever objects are
+        # passed to R or are returned by R while calling
+        # rpy2.robjects functions.
+        self.obj = bcn.bcn(x = X, y = y, 
                        B = self.B, 
                        nu = self.nu,
                        col_sample = self.col_sample,

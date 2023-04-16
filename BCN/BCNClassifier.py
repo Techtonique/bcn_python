@@ -3,7 +3,7 @@ import numpy as np
 import rpy2.robjects.packages as rpackages
 
 from rpy2.robjects.packages import importr
-from rpy2.robjects import IntVector
+from rpy2.robjects import ListVector
 from rpy2.robjects.vectors import StrVector
 from rpy2.robjects import numpy2ri, default_converter, r
 from rpy2.robjects.conversion import localconverter
@@ -139,7 +139,7 @@ class BCNClassifier(BaseEstimator, ClassifierMixin):
                        )
     return self
 
-  def predict_proba(self, X, **kwargs): 
+  def predict_proba(self, X): 
     """Predict probabilities using BCN (Boosted Configuration Networks) classification model
 
     Parameters:
@@ -148,10 +148,22 @@ class BCNClassifier(BaseEstimator, ClassifierMixin):
             Training data.
     """           
     assert self.obj is not None, "you must call `fit` before trying to predict"    
-    X_r = base.matrix(X, nrow=X.shape[0], ncol=X.shape[1])
-    return bcn.predict_bcn(self.obj, X_r, type="probs")
 
-  def predict(self, X, **kwargs):
+    # cf. https://rpy2.github.io/doc/latest/html/numpy.html
+    # Create a converter that starts with rpy2's default converter
+    # to which the numpy conversion rules are added.
+    np_cv_rules = localconverter(default_converter + numpy2ri.converter)
+
+    with np_cv_rules:
+        # Anything here and until the `with` block is exited
+        # will use our numpy converter whenever objects are
+        # passed to R or are returned by R while calling
+        # rpy2.robjects functions.
+        r_obj = ListVector(self.obj)
+        r_obj.do_slot_assign("class", StrVector(["bcn"]))
+        return bcn.predict_bcn(r_obj, X, type="probs")
+
+  def predict(self, X):
     """Predict using BCN (Boosted Configuration Networks) classification model
 
     Parameters:
@@ -159,4 +171,4 @@ class BCNClassifier(BaseEstimator, ClassifierMixin):
         X: array-like, shape (n_samples, n_features)
             Test data.
     """           
-    return np.argmax(self.predict_proba(X, **kwargs), axis=1)
+    return np.argmax(self.predict_proba(X), axis=1)

@@ -1,4 +1,3 @@
-import os
 import numpy as np
 import rpy2.robjects.packages as rpackages
 
@@ -149,6 +148,7 @@ class BCNRegressor(BaseEstimator, RegressorMixin):
             Test data.
     """           
     assert self.obj is not None, "you must call `fit` before trying to predict"
+
     # cf. https://rpy2.github.io/doc/latest/html/numpy.html
     # Create a converter that starts with rpy2's default converter
     # to which the numpy conversion rules are added.

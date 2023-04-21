@@ -1,4 +1,3 @@
-import os
 import numpy as np
 import rpy2.robjects.packages as rpackages
 

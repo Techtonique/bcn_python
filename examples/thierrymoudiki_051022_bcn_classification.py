@@ -4,16 +4,14 @@
 # 0 - Import packages
 """
 
-!pip install BCN
+#!pip install BCN
 
-!pip install the-teller
+#!pip install the-teller
 
-!pip install scikit-learn numpy
+#!pip install scikit-learn numpy
 
 import BCN as bcn # takes a long time to run, ONLY the first it's run
-import teller as tr
 import numpy as np
-from sklearn.preprocessing import StandardScaler
 from sklearn.datasets import load_breast_cancer, load_wine, load_iris
 from sklearn.model_selection import train_test_split
 from sklearn import metrics

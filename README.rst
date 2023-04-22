@@ -18,7 +18,12 @@ BCN
 
 This package contains an implementation of **Boosted Configuration (*neural*) Networks** 
 (BCNs). How do BCNs work? By creating ensembles (boosting in a supervised way) of single-layered 
-feedforward (*neural*) Networks.
+feedforward (*neural*) Networks. Interested in learning more about BCNs? You can read: 
+
+* https://thierrymoudiki.github.io/blog/2022/07/21/r/misc/boosted-configuration-networks 
+
+* https://thierrymoudiki.github.io/blog/2022/10/05/python/explainableml/interpretation-and-PI-for-BCN.
+
 
 It's worth mentioning that this Python package is built on top of the `R package`_, thanks 
 to ``rpy2``.

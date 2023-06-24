@@ -2,7 +2,7 @@
 
 __author__ = """T. Moudiki"""
 __email__ = 'thierry.moudiki@gmail.com'
-__version__ = '0.5.1'
+__version__ = '0.5.2'
 
 from .BCNClassifier import BCNClassifier
 from .BCNRegressor import BCNRegressor

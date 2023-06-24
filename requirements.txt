@@ -1,4 +1,4 @@
-backports.zoneinfo
+backports.zoneinfo;python_version<"3.9"
 cffi
 Jinja2
 joblib

@@ -1,14 +1,4 @@
-backports.zoneinfo;python_version<"3.9"
-cffi
-Jinja2
 joblib
-MarkupSafe
 numpy
-pycparser
-pytz
-pytz-deprecation-shim
 rpy2
 scikit-learn
-threadpoolctl
-tzdata
-tzlocal

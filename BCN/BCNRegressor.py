@@ -161,4 +161,4 @@ class BCNRegressor(BaseEstimator, RegressorMixin):
         # rpy2.robjects functions.
         r_obj = ListVector(self.obj)
         r_obj.do_slot_assign("class", StrVector(["bcn"]))
-        return bcn.predict_bcn(r_obj, X)
+        return np.asarray(bcn.predict_bcn(r_obj, X))

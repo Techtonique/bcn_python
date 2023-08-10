@@ -160,7 +160,7 @@ class BCNClassifier(BaseEstimator, ClassifierMixin):
         # rpy2.robjects functions.
         r_obj = ListVector(self.obj)
         r_obj.do_slot_assign("class", StrVector(["bcn"]))
-        return bcn.predict_bcn(r_obj, X, type="probs")
+        return np.asarray(bcn.predict_bcn(r_obj, X, type="probs"))
 
   def predict(self, X):
     """Predict using BCN (Boosted Configuration Networks) classification model
@@ -170,4 +170,4 @@ class BCNClassifier(BaseEstimator, ClassifierMixin):
         X: array-like, shape (n_samples, n_features)
             Test data.
     """           
-    return np.argmax(self.predict_proba(X), axis=1)
+    return np.asarray(np.argmax(self.predict_proba(X), axis=1))

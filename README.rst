@@ -12,6 +12,10 @@ BCN
 .. image:: https://pepy.tech/badge/BCN
         :target: https://pepy.tech/project/BCN
 
+.. image:: https://www.codefactor.io/repository/github/techtonique/bcn_python/badge
+   :target: https://www.codefactor.io/repository/github/techtonique/bcn_python
+   :alt: CodeFactor
+
 .. image:: https://img.shields.io/badge/documentation-is_here-green
         :target: https://techtonique.github.io/bcn_python/
 

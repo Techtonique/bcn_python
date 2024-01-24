@@ -40,7 +40,7 @@ if check_packages == False:  # Not installed? Then install.
         try: 
             utils.install_packages(StrVector(packages_to_install))
         except Exception as e:
-            subprocess.run(['mkdir', 'bcn_r'])
+            subprocess.run(['mkdir', '-p', 'bcn_r'])
             utils.install_packages(StrVector(packages_to_install), lib_loc = StrVector(['bcn_r']))
         check_packages = True
 

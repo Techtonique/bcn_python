@@ -1,5 +1,6 @@
 import numpy as np
 import rpy2.robjects.packages as rpackages
+import subprocess
 
 from rpy2.robjects.packages import importr
 from rpy2.robjects import ListVector
@@ -36,7 +37,11 @@ if check_packages == False:  # Not installed? Then install.
                 CRAN="https://cloud.r-project.org",
             )
         )
-        utils.install_packages(StrVector(packages_to_install))
+        try: 
+            utils.install_packages(StrVector(packages_to_install))
+        except Exception as e:
+            subprocess.run(['mkdir', 'bcn_r'])
+            utils.install_packages(StrVector(packages_to_install), lib_loc = StrVector(['bcn_r']))
         check_packages = True
 
 base = importr("base")

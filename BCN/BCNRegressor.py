@@ -7,6 +7,7 @@ from rpy2.robjects.vectors import StrVector
 from rpy2.robjects import numpy2ri, default_converter, r 
 from rpy2.robjects.conversion import localconverter
 from rpy2.robjects import NULL as rNULL
+import subprocess
 
 from sklearn.base import BaseEstimator
 from sklearn.base import RegressorMixin
@@ -36,7 +37,11 @@ if check_packages == False:  # Not installed? Then install.
                 CRAN="https://cloud.r-project.org",
             )
         )
-        utils.install_packages(StrVector(packages_to_install))
+        try: 
+            utils.install_packages(StrVector(packages_to_install))
+        except Exception as e:
+            subprocess.run(['mkdir', 'bcn_r'])
+            utils.install_packages(StrVector(packages_to_install), lib_loc = StrVector(['bcn_r']))
         check_packages = True
 
 base = importr("base")

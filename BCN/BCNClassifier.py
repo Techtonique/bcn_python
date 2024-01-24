@@ -14,7 +14,7 @@ from sklearn.base import ClassifierMixin
 
 r['options'](warn=-1)
 
-required_packages = ["bcn"]  # list of required R packages
+required_packages = ["Rcpp", "dfoptim", "bcn"]  # list of required R packages
 
 if all(rpackages.isinstalled(x) for x in required_packages):
     check_packages = True  # True if packages are already installed

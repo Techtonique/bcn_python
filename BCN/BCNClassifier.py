@@ -6,6 +6,7 @@ from rpy2.robjects import ListVector
 from rpy2.robjects.vectors import StrVector
 from rpy2.robjects import numpy2ri, default_converter, r
 from rpy2.robjects.conversion import localconverter
+from rpy2.robjects import NULL as rNULL
 
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -60,6 +61,8 @@ class BCNClassifier(BaseEstimator, ClassifierMixin):
           With 0 < r < 1. Controls the convergence rate of residuals.
       tol: float
           Convergence tolerance for an early stopping
+      n_clusters: int
+            Number of clusters (k-means for now).
       type_optim: string
           Type of optimization procedure used for finding neural networks weights at each iteration ("nlminb", "nmkb", "hjkb", "bobyqa", "randomsearch")
       activation: string
@@ -79,6 +82,7 @@ class BCNClassifier(BaseEstimator, ClassifierMixin):
                 lam = 1e-1,
                 r = 0.9,
                 tol = 0,
+                n_clusters = None,
                 type_optim = "nlminb",
                 activation = "sigmoid",
                 hidden_layer_bias = True,
@@ -91,6 +95,7 @@ class BCNClassifier(BaseEstimator, ClassifierMixin):
     self.lam = lam
     self.r = r
     self.tol = tol
+    self.n_clusters = n_clusters
     self.type_optim = type_optim
     self.activation = activation 
     self.hidden_layer_bias = hidden_layer_bias
@@ -129,6 +134,7 @@ class BCNClassifier(BaseEstimator, ClassifierMixin):
                        lam = self.lam,
                        r = self.r,
                        tol = self.tol,
+                       n_clusters = rNULL if self.n_clusters is None else int(self.n_clusters),
                        type_optim = self.type_optim,
                        activation = self.activation,
                        hidden_layer_bias = self.hidden_layer_bias,

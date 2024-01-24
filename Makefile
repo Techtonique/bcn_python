@@ -84,9 +84,12 @@ dist: clean ## builds source and wheel package
 	ls -l dist
 
 install: clean ## install the package to the active Python's site-packages
-	python -m pip install .
+	python3 -m pip install .
 
 build-site: docs ## export mkdocs website to a folder
 	cd docs&&mkdocs build
 	cp -rf docs/site/* ../../Pro_Website/Techtonique.github.io/bcn_python
 	cd ..
+
+run-examples: ## run all examples with one command
+	find examples -maxdepth 2 -name "*.py" -exec  python3 {} \;

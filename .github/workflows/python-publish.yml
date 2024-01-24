@@ -1,0 +1,70 @@
+name: Python publish
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ubuntu-run:
+    runs-on: ubuntu-latest
+
+    services:
+      r:
+        image: rocker/r-ver:4.1.2
+        ports:
+          - 6311:6311
+        options: --name=r-service
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install R Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y r-base
+          sudo apt-get install -y libssl-dev libcurl4-openssl-dev libxml2-dev  
+          mkdir bcn_r          
+          Rscript -e "try(utils::install.packages('bcn', lib='./bcn_r', repos='https://techtonique.r-universe.dev', dependencies = TRUE), silent=TRUE)"
+
+      - name: Install Python Dependencies
+        run: |     
+          python -m ensurepip --default-pip
+          python -m pip install --upgrade pip       
+          python -m pip list
+          python -m pip install rpy2
+          python -m pip install -r requirements.txt
+          python -m pip install wheel
+          python -m pip install .  --verbose
+
+      - name: Debug Info
+        run: |
+          python --version
+          python -m pip list
+          python -m pip freeze
+          Rscript --version
+          ls -la 
+
+      - name: Build Distribution Packages
+        run: |
+          python setup.py sdist bdist_wheel
+          ls -l dist
+
+      - name: Run Python Examples from Subdirectory
+        run: |
+          find examples -maxdepth 2 -name "*.py" -exec  python {} \;
+
+      - name: Publish to PyPI                
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with: 
+          password: ${{ secrets.PYPI_GLOBAL_BCN }}
+          repository-url: https://upload.pypi.org/legacy/

@@ -34,7 +34,7 @@ if check_packages == False:  # Not installed? Then install.
         base.options(
             repos=base.c(
                 techtonique="https://techtonique.r-universe.dev",
-                CRAN="https://cloud.r-project.org",
+                CRAN="https://cran.rstudio.com/",
             )
         )
         try: 
@@ -45,7 +45,7 @@ if check_packages == False:  # Not installed? Then install.
                 utils.install_packages(StrVector(packages_to_install), lib_loc = StrVector(['bcn_r']))
             except Exception as e2:
                 pass
-            
+
         check_packages = True
 
 base = importr("base")

@@ -34,7 +34,7 @@ if check_packages == False:  # Not installed? Then install.
         base.options(
             repos=base.c(
                 techtonique="https://techtonique.r-universe.dev",
-                CRAN="https://cloud.r-project.org",
+                CRAN="https://cran.rstudio.com/",
             )
         )
         try: 

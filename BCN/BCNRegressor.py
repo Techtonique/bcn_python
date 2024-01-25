@@ -53,7 +53,10 @@ if check_packages == False:  # Not installed? Then install.
         check_packages = True
 
 base = importr("base")
-bcn = importr("bcn")
+try: 
+    bcn = importr("bcn")
+except Exception as e:
+    bcn = importr("bcn", lib_loc = StrVector(['bcn_r']))
 stats = importr("stats")
 utils = importr("utils")
 

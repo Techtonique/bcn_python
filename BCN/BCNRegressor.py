@@ -44,7 +44,11 @@ if check_packages == False:  # Not installed? Then install.
                 subprocess.run(['mkdir', '-p', 'bcn_r'])
                 utils.install_packages(StrVector(packages_to_install), lib_loc = StrVector(['bcn_r']))                
             except Exception as e2:
-               pass 
+                subprocess.run(["mkdir", "-p", "bcn_r"], check=True)
+                command1 = "Rscript -e \"try(utils::install.packages(c('Rcpp', 'dfoptim'), lib='bcn_r', repos='https://cran.rstudio.com', dependencies = TRUE), silent=TRUE)\""
+                subprocess.run(command1, shell=True, check=True)
+                command2 = "Rscript -e \"try(utils::install.packages('bcn', lib='bcn_r', repos='https://techtonique.r-universe.dev', dependencies = TRUE), silent=TRUE)\""
+                subprocess.run(command2, shell=True, check=True)
 
         check_packages = True
 

@@ -2,7 +2,7 @@
 History
 =======
 
-0.6.1 (2024-01-25)
+0.6.2 (2024-01-25)
 ------------------
 
 * Add `n_clusters` parameter to `fit` method, to allow for a different number of clusters (for now, only k-means)

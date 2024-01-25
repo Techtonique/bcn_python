@@ -15,42 +15,50 @@ from sklearn.base import ClassifierMixin
 
 r['options'](warn=-1)
 
-required_packages = ["Rcpp", "dfoptim", "bcn"]  # list of required R packages
+# Install R packages
+commands1_lm = 'base::system.file(package = "bcn")' # check is installed 
+commands2_lm = 'base::system.file("bcn_r", package = "bcn")' # check is installed locally 
+exec_commands1_lm = subprocess.run(['Rscript', '-e', commands1_lm], capture_output=True, text=True)
+exec_commands2_lm = subprocess.run(['Rscript', '-e', commands2_lm], capture_output=True, text=True)
 
-if all(rpackages.isinstalled(x) for x in required_packages):
-    check_packages = True  # True if packages are already installed
-else:
-    check_packages = False  # False if packages are not installed
+if (len(exec_commands1_lm.stdout) == 7 and len(exec_commands2_lm.stdout) == 7): # kind of convoluted, but works    
 
-if check_packages == False:  # Not installed? Then install.
+    required_packages = ["Rcpp", "dfoptim", "bcn"]  # list of required R packages
 
-    packages_to_install = [
-        x for x in required_packages if not rpackages.isinstalled(x)
-    ]
+    if all(rpackages.isinstalled(x) for x in required_packages):
+        check_packages = True  # True if packages are already installed
+    else:
+        check_packages = False  # False if packages are not installed
 
-    if len(packages_to_install) > 0:
-        base = importr("base")
-        utils = importr("utils")
-        base.options(
-            repos=base.c(
-                techtonique="https://techtonique.r-universe.dev",
-                CRAN="https://cran.rstudio.com/",
+    if check_packages == False:  # Not installed? Then install.
+
+        packages_to_install = [
+            x for x in required_packages if not rpackages.isinstalled(x)
+        ]
+
+        if len(packages_to_install) > 0:
+            base = importr("base")
+            utils = importr("utils")
+            base.options(
+                repos=base.c(
+                    techtonique="https://techtonique.r-universe.dev",
+                    CRAN="https://cran.rstudio.com/",
+                )
             )
-        )
-        try: 
-            utils.install_packages(StrVector(packages_to_install))
-        except Exception as e1:
             try: 
-                subprocess.run(['mkdir', '-p', 'bcn_r'])
-                utils.install_packages(StrVector(packages_to_install), lib_loc = StrVector(['bcn_r']))
-            except Exception as e2:
-                subprocess.run(["mkdir", "-p", "bcn_r"], check=True)
-                command1 = "Rscript -e \"try(utils::install.packages(c('Rcpp', 'dfoptim'), lib='bcn_r', repos='https://cran.rstudio.com', dependencies = TRUE), silent=TRUE)\""
-                subprocess.run(command1, shell=True, check=True)
-                command2 = "Rscript -e \"try(utils::install.packages('bcn', lib='bcn_r', repos='https://techtonique.r-universe.dev', dependencies = TRUE), silent=TRUE)\""
-                subprocess.run(command2, shell=True, check=True)
+                utils.install_packages(StrVector(packages_to_install))
+            except Exception as e1:
+                try: 
+                    subprocess.run(['mkdir', '-p', 'bcn_r'])
+                    utils.install_packages(StrVector(packages_to_install), lib_loc = StrVector(['bcn_r']))
+                except Exception as e2:
+                    subprocess.run(["mkdir", "-p", "bcn_r"], check=True)
+                    command1 = "Rscript -e \"try(utils::install.packages(c('Rcpp', 'dfoptim'), lib='bcn_r', repos='https://cran.rstudio.com', dependencies = TRUE), silent=TRUE)\""
+                    subprocess.run(command1, shell=True, check=True)
+                    command2 = "Rscript -e \"try(utils::install.packages('bcn', lib='bcn_r', repos='https://techtonique.r-universe.dev', dependencies = TRUE), silent=TRUE)\""
+                    subprocess.run(command2, shell=True, check=True)
 
-        check_packages = True
+            check_packages = True
 
 base = importr("base")
 try: 

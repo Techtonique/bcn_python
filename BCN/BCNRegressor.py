@@ -56,7 +56,7 @@ base = importr("base")
 try: 
     bcn = importr("bcn")
 except Exception as e:
-    bcn = importr("bcn", lib_loc = StrVector(['bcn_r']))
+    bcn = importr("bcn", lib_loc = 'bcn_r')
 stats = importr("stats")
 utils = importr("utils")
 

@@ -55,17 +55,17 @@ jobs:
           Rscript --version
           ls -la 
 
-      #- name: Build Distribution Packages
-      #  run: |
-      #    python setup.py sdist bdist_wheel
-      #    ls -l dist
+      - name: Build Distribution Packages
+        run: |
+          python setup.py sdist bdist_wheel
+          ls -l dist
 
-      #- name: Run Python Examples from Subdirectory
-      #  run: |
-      #    find examples -maxdepth 2 -name "*.py" -exec  python {} \;
+      - name: Run Python Examples from Subdirectory
+        run: |
+          find examples -maxdepth 2 -name "*.py" -exec  python {} \;
 
-      #- name: Publish to PyPI                
-      #  uses: pypa/gh-action-pypi-publish@release/v1
-      #  with: 
-      #    password: ${{ secrets.PYPI_GLOBAL_BCN }}
-      #    repository-url: https://upload.pypi.org/legacy/ 
+      - name: Publish to PyPI                
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with: 
+          password: ${{ secrets.PYPI_GLOBAL_BCN }}
+          repository-url: https://upload.pypi.org/legacy/ 

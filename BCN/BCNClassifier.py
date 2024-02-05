@@ -140,7 +140,8 @@ class BCNClassifier(BaseEstimator, ClassifierMixin):
             Target values.
 
     """
-
+    self.classes_ = np.unique(y)
+    self.n_classes_ = len(self.classes_)
     # cf. https://rpy2.github.io/doc/latest/html/numpy.html
     # Create a converter that starts with rpy2's default converter
     # to which the numpy conversion rules are added.
@@ -165,7 +166,7 @@ class BCNClassifier(BaseEstimator, ClassifierMixin):
                        verbose = self.verbose,
                        show_progress = self.show_progress,
                        seed = self.seed                       
-                       )
+                       )    
     return self
 
   def predict_proba(self, X): 

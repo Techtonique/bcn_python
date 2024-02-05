@@ -2,6 +2,11 @@
 History
 =======
 
+0.7.1 (2024-02-06)
+------------------
+
+* Add `classes_` attribute to `fit` method in BCNClassifier
+
 0.6.2 (2024-01-25)
 ------------------
 

@@ -5,20 +5,15 @@ BCN
 
 .. image:: https://img.shields.io/pypi/v/BCN.svg
         :target: https://pypi.python.org/pypi/BCN
-
 .. image:: https://img.shields.io/pypi/l/BCN
         :target: https://github.com/Techtonique/bcn_python/blob/main/LICENSE
-
 .. image:: https://pepy.tech/badge/BCN
         :target: https://pepy.tech/project/BCN
-
-.. image:: https://www.codefactor.io/repository/github/techtonique/bcn_python/badge/main
-   :target: https://www.codefactor.io/repository/github/techtonique/bcn_python/overview/main
+.. image:: https://www.codefactor.io/repository/github/techtonique/bcn_python/badge
+   :target: https://www.codefactor.io/repository/github/techtonique/bcn_python
    :alt: CodeFactor
-
 .. image:: https://img.shields.io/badge/documentation-is_here-green
         :target: https://techtonique.github.io/bcn_python/
-
 .. image:: https://hits.dwyl.com/Techtonique/bcn.svg?style=flat-square
         :target: http://hits.dwyl.com/Techtonique/bcn
 

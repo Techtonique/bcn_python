@@ -21,6 +21,8 @@ This package contains an implementation of **Boosted Configuration (*neural*) Ne
 (BCNs). How do BCNs work? By creating ensembles (boosting in a supervised way) of single-layered 
 feedforward (*neural*) Networks. Interested in learning more about BCNs? You can read: 
 
+* https://www.researchgate.net/publication/380760578_Boosted_Configuration_neural_Networks_for_supervised_classification
+
 * https://thierrymoudiki.github.io/blog/2022/07/21/r/misc/boosted-configuration-networks 
 
 * https://thierrymoudiki.github.io/blog/2022/10/05/python/explainableml/interpretation-and-PI-for-BCN.
